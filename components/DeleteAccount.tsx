@@ -53,7 +53,7 @@ export default function DeleteAccount() {
 
       <form onSubmit={handleDelete} className="mt-3 space-y-3">
         <div className="text-sm">Type <span className="font-mono">DELETE</span> to confirm</div>
-        <input value={confirm} onChange={(e) => setConfirm(e.target.value)} className="w-full p-2 rounded bg-gray-900 border border-gray-800" placeholder="Type DELETE" />
+  <input value={confirm} onChange={(e) => setConfirm(e.target.value)} className="w-full input-field" placeholder="Type DELETE" />
         <div className="flex items-center gap-2">
           <button type="submit" disabled={loading} className="px-4 py-2 bg-red-600 hover:bg-red-500 rounded text-white">{loading ? 'Deleting...' : 'Delete account'}</button>
           {message && <div className="text-sm text-red-200">{message}</div>}

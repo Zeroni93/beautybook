@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#071129" />
+      <stop offset="100%" stop-color="#0b2540" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g)" />
+  <g fill="#1f7bd6" opacity="0.12">
+    <rect x="100" y="100" width="1000" height="600" rx="24" />
+  </g>
+  <g fill="#fff" opacity="0.12">
+    <circle cx="200" cy="200" r="80" />
+  </g>
+  <g fill="#9fbff3" opacity="0.9">
+    <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Inter, Arial, Helvetica, sans-serif" font-size="48">Provider Image</text>
+  </g>
+</svg>

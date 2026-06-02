@@ -36,7 +36,7 @@ export default function ClientAppointments() {
   return (
     <div className="space-y-3">
       {appointments.map((a) => (
-        <div key={a.id} className="p-3 bg-gray-900 rounded border border-gray-800">
+  <div key={a.id} className="p-3 scalehub-card rounded border border-gray-800">
           <div className="text-sm text-gray-300">Service: {a.service_name || 'Service'}</div>
           <div className="text-sm text-gray-400">Status: {a.status}</div>
           <div className="text-sm text-gray-400">Requested: {new Date(a.requested_at).toLocaleString()}</div>

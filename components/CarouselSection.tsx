@@ -9,7 +9,7 @@ type Props = {
 
 export default function CarouselSection({ title, subtitle, children, seeAll }: Props) {
   return (
-    <section className="mt-10">
+  <section className="mt-10 motion-safe-animate scalehub-fade-up">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-xl font-semibold">{title}</h2>

@@ -1,0 +1,186 @@
+Implement ScaleHub Sprint 2 and Sprint 3: Provider Media Uploads + Reviews/Ratings.
+
+Goal:
+Add the next missing MVP features:
+1. Provider media uploads
+2. Reviews and ratings
+
+Do not change:
+- booking_requests architecture
+- customer no-account booking flow
+- provider auth
+- provider $15/month flat-fee model
+- no commissions / no booking fees model
+- existing routes unless necessary
+
+Do not add:
+- Stripe
+- SMS
+- email
+- AI
+- maps
+
+--------------------------------------------------
+SPRINT 2 — PROVIDER MEDIA UPLOADS
+--------------------------------------------------
+
+1. Supabase Storage
+Use bucket:
+provider-media
+
+If the bucket does not exist, add SQL instructions in:
+migrations/provider-media-storage.sql
+
+Bucket folders:
+- profile/
+- cover/
+- gallery/
+
+2. Database fields
+Use existing seller_profiles fields if they exist:
+- profile_photo_path
+- cover_photo_path
+
+For gallery, use existing table if available:
+- seller_portfolio_media
+
+If seller_portfolio_media exists, use it.
+Do not create duplicate media tables.
+
+3. Provider Dashboard Media Section
+Add section:
+“Media Gallery”
+
+Provider can upload:
+- profile photo
+- cover photo
+- gallery photos
+
+UI:
+- upload buttons
+- preview current image
+- loading state
+- success/error messages
+- delete gallery image button
+
+4. Upload behavior
+- Only authenticated providers can upload their own files.
+- Store files using path:
+provider-media/{userId}/profile/{filename}
+provider-media/{userId}/cover/{filename}
+provider-media/{userId}/gallery/{filename}
+
+5. Public Provider Profile
+Show:
+- cover photo if available
+- profile photo if available
+- gallery grid if available
+- fallback placeholders if no media exists
+
+6. Security
+Do not expose service role key in frontend.
+Use Supabase client and existing RLS/storage policies.
+If storage policies are missing, add SQL in migration file.
+
+--------------------------------------------------
+SPRINT 3 — REVIEWS AND RATINGS
+--------------------------------------------------
+
+7. Reviews Database
+Use existing reviews table if available.
+If existing reviews table requires appointment_id and does not fit the current booking_requests flow, create migration SQL to support booking_request reviews safely.
+
+Preferred:
+Create table if not exists public.provider_reviews:
+- id uuid primary key default gen_random_uuid()
+- provider_id uuid not null references public.seller_profiles(user_id) on delete cascade
+- booking_request_id uuid references public.booking_requests(id) on delete set null
+- customer_name text not null
+- rating integer not null check (rating between 1 and 5)
+- review_text text
+- created_at timestamptz default timezone('utc', now())
+
+8. RLS for provider_reviews
+- Anyone can read reviews.
+- Anyone can create a review only if rating is between 1 and 5.
+- Providers cannot edit customer reviews from the frontend.
+- Do not require customer login.
+
+9. Public Provider Profile Reviews
+Display:
+- average rating
+- total reviews
+- review cards
+- empty state:
+  “No reviews yet.”
+
+10. Review Submission
+Add review form to provider profile.
+
+Fields:
+- customer name
+- rating
+- review text
+
+Important:
+Only show review form after a booking is completed if possible.
+If that is too much for this sprint, add a clear TODO comment:
+“Future improvement: require completed booking_request before allowing review.”
+
+11. Provider Cards
+Update provider cards and browse page to display:
+- average rating
+- review count
+
+Use real reviews if available.
+Fallback to mock rating/review count if no reviews exist.
+
+12. Featured Ranking
+Update Featured Providers logic:
+Sort by:
+1. average rating
+2. review count
+3. fallback mock score
+
+Do not rank providers by payment amount.
+
+--------------------------------------------------
+UI / BUILD
+--------------------------------------------------
+
+13. UI Styling
+Use current ScaleHub style:
+- dark navy/black
+- blue/cyan accents
+- rounded-2xl cards
+- global blue glow background
+- mobile-first
+- loading states
+- error states
+- empty states
+
+14. Documentation
+Create or update:
+docs/sprint-2-3-status.md
+
+Include:
+- media upload status
+- storage bucket requirements
+- review system status
+- database migrations added
+- manual testing checklist
+
+15. Build
+Run:
+npm run build
+
+Fix all TypeScript, import, JSX, or Supabase client errors.
+
+Final output:
+Report:
+- files changed
+- migrations added
+- media upload status
+- review status
+- build result
+- manual Supabase steps required

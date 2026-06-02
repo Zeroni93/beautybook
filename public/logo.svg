@@ -9,6 +9,6 @@
   <g transform="translate(40,30)">
     <rect x="0" y="0" width="220" height="220" rx="40" fill="none" />
     <text x="110" y="90" text-anchor="middle" font-family="Verdana, Arial, sans-serif" font-size="72" font-weight="700" fill="url(#g)">BB</text>
-    <text x="110" y="170" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#F7C7D9">BeautyBook</text>
+  <text x="110" y="170" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="28" fill="#F7C7D9">ScaleHub</text>
   </g>
 </svg>

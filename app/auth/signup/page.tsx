@@ -25,8 +25,8 @@ export default function SignupPage() {
     <div className="px-5 py-8 max-w-md mx-auto">
       <h1 className="text-2xl font-bold">Create an account</h1>
       <form onSubmit={handleSubmit} className="mt-4 space-y-3">
-        <input type="email" className="w-full p-2 rounded bg-gray-900 border border-gray-800" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" className="w-full p-2 rounded bg-gray-900 border border-gray-800" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+  <input type="email" className="w-full input-field" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+  <input type="password" className="w-full input-field" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
         <div className="flex gap-2 items-center">
           <label className="text-sm">
             <input type="radio" name="role" value="customer" checked={role==='customer'} onChange={() => setRole('customer')} /> Customer
